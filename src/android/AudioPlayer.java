@@ -489,7 +489,7 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
             this.player.start();
             this.setState(STATE.MEDIA_RUNNING);
             this.seekOnPrepared = 0; //reset only when played
-        } else {
+        } else {            
             this.setState(STATE.MEDIA_STARTING);
         }
         // Save off duration
@@ -701,6 +701,8 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
                     this.player.setDataSource(Environment.getExternalStorageDirectory().getPath() + "/" + file);
                 }
             }
+                /* rgagne: set to notification type */
+                this.player.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
                 this.setState(STATE.MEDIA_STARTING);
                 this.player.setOnPreparedListener(this);
                 this.player.prepare();
