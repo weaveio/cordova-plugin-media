@@ -701,15 +701,16 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
                     this.player.setDataSource(Environment.getExternalStorageDirectory().getPath() + "/" + file);
                 }
             }
-                /* rgagne: set to notification type */
-                this.player.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
-                this.setState(STATE.MEDIA_STARTING);
-                this.player.setOnPreparedListener(this);
-                this.player.prepare();
+                
+            /* rgagne: set to notification type */
+            this.player.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+            this.setState(STATE.MEDIA_STARTING);
+            this.player.setOnPreparedListener(this);
+            this.player.prepare();
 
-                // Get duration
-                this.duration = getDurationInSeconds();
-            }
+            // Get duration
+            this.duration = getDurationInSeconds();
+        }
     }
 
     private void sendErrorStatus(int errorCode) {
