@@ -371,10 +371,13 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
                 }
 
                 NSString* sessionCategory = bPlayAudioWhenScreenIsLocked ? AVAudioSessionCategoryPlayback : AVAudioSessionCategoryAmbient;
-                /* rgagne: switching to use categoryAmbient                    
-                 NSString* sessionCategory = bPlayAudioWhenScreenIsLocked ? AVAudioSessionCategoryPlayback : AVAudioSessionCategorySoloAmbient;
-                */
-                [self.avSession setCategory:sessionCategory error:&err];
+                /* rgagne: switching to use categoryAmbient and switching category*/                   
+                // NSString* sessionCategory = bPlayAudioWhenScreenIsLocked ? AVAudioSessionCategoryPlayback : AVAudioSessionCategorySoloAmbient;
+                // [self.avSession setCategory:sessionCategory error:&err];
+                [self.avSession setCategory:AVAudioSessionCategoryPlayAndRecord 
+                    withOptions:AVAudioSessionCategoryOptionDuckOthers | AVAudioSessionCategoryOptionDefaultToSpeaker | 
+                    AVAudioSessionCategoryOptionInterruptSpokenAudioAndMixWithOthers error:nil];
+
                 if (![self.avSession setActive:YES error:&err]) {
                     // other audio with higher priority that does not allow mixing could cause this to fail
                     NSLog(@"Unable to play audio: %@", [err localizedFailureReason]);
