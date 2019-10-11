@@ -374,7 +374,7 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
                 
                 [self.avSession 
                     setCategory:sessionCategory 
-                    withOptions:AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionDuckOthers 
+                    withOptions:AVAudioSessionCategoryOptionMixWithOthers
                     error:&err];
 
                 // rgagne: original settings for the above
